@@ -1,0 +1,1450 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Website tuyên truyền kiến thức, nguyên nhân, hậu quả và biện pháp bảo đảm an toàn giao thông.">
+<meta name="theme-color" content="#07305b">
+<title>🚦 An Toàn Giao Thông | Vì Cuộc Sống An Toàn</title>
+
+<style>
+/* ==================================================
+   PHẦN 1: THIẾT LẬP CHUNG
+================================================== */
+:root {
+    --blue: #0878d1;
+    --blue2: #22a7ff;
+    --dark: #06294b;
+    --yellow: #ffd43b;
+    --bg: #f3f8ff;
+    --text: #26384d;
+    --muted: #66788c;
+    --white: #fff;
+    --shadow: 0 12px 35px rgba(7, 48, 91, .10);
+    --radius: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+button, input {
+    font: inherit;
+}
+
+.container {
+    width: min(1180px, 92%);
+    margin-inline: auto;
+}
+
+section {
+    scroll-margin-top: 100px;
+}
+
+.section {
+    padding: 90px 0;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 45px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: var(--blue);
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    color: var(--dark);
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.25;
+    margin: 10px 0;
+}
+
+.section-heading p {
+    color: var(--muted);
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 22px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--yellow);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px #0002;
+}
+
+.btn-blue {
+    background: var(--blue);
+    color: white;
+}
+
+.btn-outline {
+    border: 1px solid #cbdff2;
+    background: white;
+    color: var(--dark);
+}
+
+/* ==================================================
+   PHẦN 2: THANH TIẾN ĐỘ CUỘN
+================================================== */
+.progress-bar {
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: var(--yellow);
+}
+
+/* ==================================================
+   PHẦN 3: HEADER VÀ MENU
+================================================== */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 4px 24px #07305b10;
+}
+
+.navbar {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--dark);
+    font-weight: 900;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.logo-icon {
+    font-size: 30px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+    color: #344d68;
+    position: relative;
+    padding: 10px 0;
+    transition: color .25s;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 3px;
+    width: 0;
+    height: 3px;
+    border-radius: 5px;
+    background: var(--yellow);
+    transition: width .25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--blue);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    border: 0;
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ==================================================
+   PHẦN 4: BANNER TRANG CHỦ
+================================================== */
+.hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 630px;
+    display: flex;
+    align-items: center;
+    color: white;
+    background:
+        linear-gradient(90deg, #031d3af2 0%, #07305bd9 52%, #07305b55 100%),
+        url("https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+    overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(2px);
+    animation: float 8s ease-in-out infinite;
+}
+
+.hero::before {
+    width: 300px;
+    height: 300px;
+    background: #20a4ff26;
+    top: -90px;
+    right: 8%;
+}
+
+.hero::after {
+    width: 200px;
+    height: 200px;
+    background: #ffd43b24;
+    bottom: -60px;
+    right: 35%;
+    animation-delay: -3s;
+}
+
+.hero-content {
+    padding: 85px 0 115px;
+    max-width: 760px;
+    animation: fadeUp 1s ease both;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff1a;
+    border: 1px solid #ffffff42;
+    padding: 8px 15px;
+    border-radius: 50px;
+    color: var(--yellow);
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: var(--yellow);
+}
+
+.hero p {
+    max-width: 640px;
+    font-size: clamp(16px, 2vw, 19px);
+    color: #e0edfa;
+    margin-bottom: 30px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.traffic-light {
+    display: flex;
+    gap: 9px;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.light {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    animation: traffic 3s infinite;
+}
+
+.light.red {
+    background: #ff4b4b;
+    box-shadow: 0 0 14px #ff4b4b;
+}
+
+.light.yellow {
+    background: #ffd43b;
+    box-shadow: 0 0 14px #ffd43b;
+    animation-delay: 1s;
+}
+
+.light.green {
+    background: #30e89a;
+    box-shadow: 0 0 14px #30e89a;
+    animation-delay: 2s;
+}
+
+.traffic-light span:last-child {
+    margin-left: 6px;
+    font-size: 12px;
+    color: #d8eaff;
+}
+
+/* ==================================================
+   PHẦN 5: BA THẺ THÔNG ĐIỆP
+================================================== */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    position: relative;
+    margin-top: -55px;
+    z-index: 5;
+}
+
+.stat {
+    background: white;
+    padding: 25px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    border-bottom: 4px solid var(--yellow);
+    transition: transform .3s;
+}
+
+.stat:hover {
+    transform: translateY(-7px);
+}
+
+.stat .emoji {
+    font-size: 34px;
+}
+
+.stat h3 {
+    color: var(--dark);
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.stat p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* ==================================================
+   PHẦN 6: CÁC THẺ KIẾN THỨC
+================================================== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e2ebf5;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 8px 28px #07305b08;
+    transition: transform .35s, box-shadow .35s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 38px #07305b17;
+}
+
+.card-image {
+    width: 100%;
+    height: 220px;
+    display: block;
+    object-fit: cover;
+    background: #e1edfa;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    border-radius: 17px;
+    background: #eaf5ff;
+    font-size: 31px;
+    margin-bottom: 15px;
+    transition: transform .3s;
+}
+
+.card:hover .card-icon {
+    transform: rotate(-8deg) scale(1.08);
+}
+
+.card h3 {
+    color: var(--dark);
+    font-size: 21px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.card p,
+.card li {
+    color: #5b6e82;
+    font-size: 14px;
+}
+
+.card ul {
+    padding-left: 20px;
+}
+
+.card li {
+    margin: 8px 0;
+}
+
+.soft {
+    background: #eaf4ff;
+}
+
+/* ==================================================
+   PHẦN 7: BIỆN PHÁP VÀ NGUYÊN NHÂN
+================================================== */
+.number {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    color: white;
+    background: linear-gradient(135deg, var(--blue), var(--dark));
+    font-size: 19px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.card-accent {
+    border-top: 4px solid var(--blue);
+}
+
+.tip {
+    margin-top: 30px;
+    padding: 22px;
+    border-radius: 16px;
+    background: white;
+    border-left: 5px solid var(--yellow);
+    box-shadow: var(--shadow);
+}
+
+/* ==================================================
+   PHẦN 8: TRA CỨU THƯ VIỆN PHÁP LUẬT
+================================================== */
+.law-section {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #06294b, #075ca6);
+    color: white;
+}
+
+.law-section::before {
+    content: "⚖️";
+    position: absolute;
+    right: 5%;
+    top: 8%;
+    font-size: clamp(100px, 18vw, 230px);
+    opacity: .06;
+    transform: rotate(-12deg);
+    pointer-events: none;
+}
+
+.law-content {
+    position: relative;
+    z-index: 1;
+}
+
+.law-section .section-heading h2 {
+    color: white;
+}
+
+.law-section .section-heading p {
+    color: #d8eaff;
+}
+
+.law-panel {
+    max-width: 900px;
+    margin: auto;
+    padding: clamp(22px, 5vw, 42px);
+    border-radius: 24px;
+    background: #ffffff12;
+    border: 1px solid #ffffff32;
+    backdrop-filter: blur(12px);
+}
+
+.law-panel h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.law-panel > p {
+    color: #deedff;
+    margin-bottom: 22px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 16px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    outline: none;
+    background: white;
+    color: var(--dark);
+}
+
+.search-form input:focus {
+    border-color: var(--yellow);
+    box-shadow: 0 0 0 4px #ffd43b25;
+}
+
+.law-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.law-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 90px;
+    padding: 17px;
+    color: white;
+    text-decoration: none;
+    background: #ffffff12;
+    border: 1px solid #ffffff30;
+    border-radius: 15px;
+    transition: background .25s, transform .25s;
+}
+
+.law-link:hover {
+    background: #ffffff25;
+    transform: translateY(-4px);
+}
+
+.law-link .law-icon {
+    font-size: 30px;
+}
+
+.law-link strong {
+    display: block;
+    line-height: 1.5;
+}
+
+.law-link small {
+    display: block;
+    color: #d5e8ff;
+    font-size: 12px;
+}
+
+.law-note {
+    margin-top: 18px;
+    color: #d8eaff;
+    font-size: 12px;
+}
+
+/* ==================================================
+   PHẦN 9: VIDEO
+================================================== */
+.video-box {
+    max-width: 900px;
+    margin: auto;
+    padding: 12px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.video-box iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 14px;
+}
+
+.video-note {
+    text-align: center;
+    color: var(--muted);
+    margin-top: 18px;
+    font-size: 13px;
+}
+
+/* ==================================================
+   PHẦN 10: THÔNG ĐIỆP CUỐI
+================================================== */
+.quote {
+    padding: 75px 20px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #0878d1, #06294b);
+}
+
+.quote-symbol {
+    font-size: 50px;
+    animation: heartbeat 1.8s infinite;
+}
+
+.quote h2 {
+    color: var(--yellow);
+    font-size: clamp(28px, 5vw, 45px);
+    line-height: 1.3;
+    margin: 18px 0;
+}
+
+.quote p {
+    max-width: 700px;
+    margin: 0 auto 25px;
+    color: #e3f1ff;
+    font-size: 17px;
+}
+
+/* ==================================================
+   PHẦN 11: FOOTER
+================================================== */
+footer {
+    padding: 42px 20px;
+    text-align: center;
+    background: #031b32;
+    color: #d6e7f8;
+}
+
+footer h3 {
+    color: white;
+    margin-bottom: 8px;
+}
+
+footer p {
+    font-size: 13px;
+    margin: 6px 0;
+}
+
+footer a {
+    color: var(--yellow);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 16px 0;
+}
+
+/* ==================================================
+   PHẦN 12: NÚT QUAY LÊN ĐẦU TRANG
+================================================== */
+.back-top {
+    position: fixed;
+    right: 20px;
+    bottom: 22px;
+    z-index: 900;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    color: var(--dark);
+    background: var(--yellow);
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 5px 20px #0002;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: .3s;
+}
+
+.back-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-top:hover {
+    transform: translateY(-5px);
+}
+
+/* ==================================================
+   PHẦN 13: HIỆU ỨNG CUỘN VÀ ANIMATION
+================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+}
+
+@keyframes traffic {
+    0%, 30%, 100% { opacity: .35; }
+    10%, 20% { opacity: 1; }
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+/* ==================================================
+   PHẦN 14: TƯƠNG THÍCH ĐIỆN THOẠI
+================================================== */
+@media (max-width: 1000px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar {
+        min-height: 70px;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 18px 5%;
+        background: white;
+        box-shadow: 0 12px 20px #07305b12;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 10px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        padding: 65px 0;
+    }
+
+    .hero {
+        min-height: 550px;
+        background-position: 60% center;
+    }
+
+    .hero-content {
+        padding: 65px 0 100px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stats,
+    .grid,
+    .law-links {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        margin-top: 20px;
+    }
+
+    .card-image {
+        height: 200px;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form .btn {
+        width: 100%;
+    }
+
+    .law-panel h3 {
+        font-size: 21px;
+    }
+
+    .logo {
+        font-size: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ==================================================
+     PHẦN 15: HEADER VÀ MENU
+================================================== -->
+<header>
+    <div class="navbar container">
+        <a href="#home" class="logo">
+            <span class="logo-icon">🚦</span>
+            <span>AN TOÀN GIAO THÔNG</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle"
+                aria-label="Mở menu"
+                aria-expanded="false"
+                aria-controls="navLinks">☰</button>
+
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#knowledge">Kiến thức</a></li>
+                <li><a href="#causes">Nguyên nhân</a></li>
+                <li><a href="#solutions">Biện pháp</a></li>
+                <li><a href="#law">Tra cứu luật</a></li>
+                <li><a href="#video">Video</a></li>
+                <li><a href="#message">Thông điệp</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<!-- ==================================================
+     PHẦN 16: TRANG CHỦ
+================================================== -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                ✨ CÙNG NHAU HÀNH ĐỘNG
+            </div>
+
+            <h1>An Toàn<br><span>Giao Thông!</span></h1>
+
+            <p>
+                An toàn giao thông là hạnh phúc của mọi nhà.
+                Mỗi hành động có trách nhiệm hôm nay sẽ góp phần
+                bảo vệ bản thân, gia đình và cộng đồng ngày mai.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn" href="#knowledge">
+                    Khám phá kiến thức ↓
+                </a>
+                <a class="btn btn-outline" href="#law">
+                    ⚖️ Tra cứu pháp luật
+                </a>
+            </div>
+
+            <div class="traffic-light" aria-label="Đèn giao thông minh họa">
+                <span class="light red"></span>
+                <span class="light yellow"></span>
+                <span class="light green"></span>
+                <span>Đi đúng luật – Về nhà an toàn</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================================================
+     PHẦN 17: THÔNG ĐIỆP NHANH
+================================================== -->
+<div class="container stats">
+    <article class="stat">
+        <div class="emoji">🪖</div>
+        <h3>Đội mũ bảo hiểm</h3>
+        <p>Cài quai đúng cách trong mỗi chuyến đi.</p>
+    </article>
+
+    <article class="stat">
+        <div class="emoji">🚦</div>
+        <h3>Chấp hành luật</h3>
+        <p>Tôn trọng biển báo và tín hiệu giao thông.</p>
+    </article>
+
+    <article class="stat">
+        <div class="emoji">💙</div>
+        <h3>Vì cộng đồng</h3>
+        <p>Văn minh, nhường nhịn và có trách nhiệm.</p>
+    </article>
+</div>
+
+<!-- ==================================================
+     PHẦN 18: KIẾN THỨC CƠ BẢN
+================================================== -->
+<section class="section" id="knowledge">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Kiến thức cơ bản</span>
+            <h2>Những Điều Cần Biết</h2>
+            <p>Những thói quen nhỏ tạo nên hành trình an toàn.</p>
+        </div>
+
+        <div class="grid">
+            <article class="card reveal">
+                <img class="card-image"
+                     src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80"
+                     alt="Xe máy và trang bị bảo hộ"
+                     loading="lazy">
+
+                <div class="card-body">
+                    <div class="card-icon">🪖</div>
+                    <h3>Đội mũ bảo hiểm</h3>
+                    <ul>
+                        <li>Chọn mũ đạt quy chuẩn áp dụng.</li>
+                        <li>Cài quai vừa vặn, chắc chắn.</li>
+                        <li>Thay mũ khi bị hư hỏng nghiêm trọng.</li>
+                        <li>Nhắc nhở người thân cùng thực hiện.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="card reveal">
+                <img class="card-image"
+                     src="https://images.unsplash.com/photo-1494522358652-f30e61a60313?auto=format&fit=crop&w=900&q=80"
+                     alt="Đường phố và phương tiện giao thông"
+                     loading="lazy">
+
+                <div class="card-body">
+                    <div class="card-icon">🚦</div>
+                    <h3>Tuân thủ tín hiệu</h3>
+                    <ul>
+                        <li>Dừng đúng quy định khi đèn đỏ.</li>
+                        <li>Đi đúng làn đường, phần đường.</li>
+                        <li>Chấp hành biển báo và hiệu lệnh.</li>
+                        <li>Không phóng nhanh, vượt ẩu.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="card reveal">
+                <div class="card-body">
+                    <div class="card-icon">🚶</div>
+                    <h3>An toàn cho người đi bộ</h3>
+                    <ul>
+                        <li>Đi trên vỉa hè khi có vỉa hè.</li>
+                        <li>Sang đường tại nơi được phép.</li>
+                        <li>Quan sát kỹ các hướng trước khi đi.</li>
+                        <li>Không chạy bất ngờ xuống lòng đường.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ==================================================
+     PHẦN 19: NGUYÊN NHÂN VÀ HẬU QUẢ
+================================================== -->
+<section class="section soft" id="causes">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Nhận biết nguy cơ</span>
+            <h2>Nguyên Nhân Và Hậu Quả</h2>
+            <p>Hiểu rõ nguy cơ để chủ động phòng tránh tai nạn.</p>
+        </div>
+
+        <div class="grid">
+            <article class="card card-accent reveal">
+                <div class="card-body">
+                    <div class="card-icon">🚫</div>
+                    <h3>Vi phạm giao thông</h3>
+                    <p>
+                        Vượt đèn đỏ, chạy quá tốc độ, đi sai làn,
+                        mất tập trung hoặc sử dụng điện thoại khi
+                        điều khiển phương tiện đều có thể làm tăng
+                        nguy cơ va chạm.
+                    </p>
+                </div>
+            </article>
+
+            <article class="card card-accent reveal">
+                <div class="card-body">
+                    <div class="card-icon">🩹</div>
+                    <h3>Tai nạn giao thông</h3>
+                    <p>
+                        Tai nạn có thể gây thương tích, thiệt hại
+                        tài sản, ảnh hưởng tinh thần và để lại
+                        hậu quả lâu dài cho gia đình, xã hội.
+                    </p>
+                </div>
+            </article>
+
+            <article class="card card-accent reveal">
+                <div class="card-body">
+                    <div class="card-icon">🚗</div>
+                    <h3>Ùn tắc giao thông</h3>
+                    <p>
+                        Đi lại thiếu trật tự, dừng đỗ sai quy định
+                        và không nhường đường có thể gây ùn tắc,
+                        lãng phí thời gian và tăng nguy cơ va chạm.
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <div class="tip reveal">
+            💡 <strong>Ghi nhớ:</strong>
+            Không chủ quan khi tham gia giao thông.
+            Luôn quan sát, giữ khoảng cách và lựa chọn tốc độ
+            phù hợp với điều kiện đường sá.
+        </div>
+    </div>
+</section>
+
+<!-- ==================================================
+     PHẦN 20: BIỆN PHÁP AN TOÀN
+================================================== -->
+<section class="section" id="solutions">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Hành động hôm nay</span>
+            <h2>Biện Pháp Đảm Bảo An Toàn</h2>
+            <p>Bắt đầu từ chính hành động của mỗi người.</p>
+        </div>
+
+        <div class="grid">
+            <article class="card reveal">
+                <div class="card-body">
+                    <div class="number">01</div>
+                    <h3>Đối với học sinh</h3>
+                    <ul>
+                        <li>Đội mũ bảo hiểm đúng cách.</li>
+                        <li>Không đi xe dàn hàng ngang.</li>
+                        <li>Không sử dụng điện thoại khi lái xe.</li>
+                        <li>Không điều khiển phương tiện khi chưa đủ điều kiện theo quy định.</li>
+                        <li>Chấp hành hướng dẫn của người điều tiết giao thông.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="card reveal">
+                <div class="card-body">
+                    <div class="number">02</div>
+                    <h3>Đối với mọi người</h3>
+                    <ul>
+                        <li>Không lái xe sau khi uống rượu, bia.</li>
+                        <li>Giữ khoảng cách an toàn.</li>
+                        <li>Nhường đường theo quy định.</li>
+                        <li>Kiểm tra phương tiện trước chuyến đi.</li>
+                        <li>Tuân thủ quy định về tốc độ.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="card reveal">
+                <div class="card-body">
+                    <div class="number">03</div>
+                    <h3>Chung tay hành động</h3>
+                    <ul>
+                        <li>Tuyên truyền kiến thức giao thông.</li>
+                        <li>Tôn trọng biển báo và đèn tín hiệu.</li>
+                        <li>Cư xử văn minh trên đường.</li>
+                        <li>Nhắc nhở nhau thực hiện đúng luật.</li>
+                        <li>Góp phần xây dựng cộng đồng an toàn.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ==================================================
+     PHẦN 21: THƯ VIỆN PHÁP LUẬT
+================================================== -->
+<section class="section law-section" id="law">
+    <div class="container law-content">
+        <div class="section-heading reveal">
+            <span class="eyebrow" style="color:#ffd43b">
+                Kiến thức pháp luật
+            </span>
+            <h2>Tra Cứu Văn Bản Pháp Luật</h2>
+            <p>
+                Tìm hiểu quy định pháp luật về giao thông đường bộ
+                tại Thư Viện Pháp Luật.
+            </p>
+        </div>
+
+        <div class="law-panel reveal">
+            <h3>⚖️ Bạn muốn tìm hiểu quy định nào?</h3>
+            <p>
+                Nhập từ khóa, ví dụ: “đội mũ bảo hiểm”,
+                “luật giao thông đường bộ” hoặc “tốc độ xe”.
+            </p>
+
+            <form class="search-form" id="lawSearch">
+                <input
+                    id="lawKeyword"
+                    type="search"
+                    placeholder="🔎 Nhập từ khóa cần tra cứu..."
+                    aria-label="Từ khóa tra cứu pháp luật"
+                    required>
+
+                <button type="submit" class="btn">
+                    Tìm kiếm ↗
+                </button>
+            </form>
+
+            <div class="law-links">
+                <a class="law-link"
+                   href="https://thuvienphapluat.vn/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="law-icon">⚖️</span>
+                    <span>
+                        <strong>Thư Viện Pháp Luật</strong>
+                        <small>Truy cập trang chủ chính thức</small>
+                    </span>
+                </a>
+
+                <a class="law-link"
+                   href="https://thuvienphapluat.vn/van-ban.aspx"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="law-icon">📚</span>
+                    <span>
+                        <strong>Tra cứu văn bản</strong>
+                        <small>Tìm luật, nghị định và thông tư</small>
+                    </span>
+                </a>
+
+                <a class="law-link"
+                   href="https://thuvienphapluat.vn/phap-luat"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="law-icon">📖</span>
+                    <span>
+                        <strong>Thông tin pháp luật</strong>
+                        <small>Tham khảo các bài viết pháp luật</small>
+                    </span>
+                </a>
+
+                <a class="law-link"
+                   href="https://vanban.chinhphu.vn/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="law-icon">🏛️</span>
+                    <span>
+                        <strong>Cổng văn bản Chính phủ</strong>
+                        <small>Tham khảo nguồn văn bản Chính phủ</small>
+                    </span>
+                </a>
+            </div>
+
+            <p class="law-note">
+                Lưu ý: Thư Viện Pháp Luật là nguồn tham khảo.
+                Hãy kiểm tra ngày hiệu lực, tình trạng sửa đổi
+                và văn bản chính thức khi cần áp dụng quy định.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ==================================================
+     PHẦN 22: VIDEO GIÁO DỤC
+================================================== -->
+<section class="section" id="video">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Học từ thực tế</span>
+            <h2>Video An Toàn Giao Thông</h2>
+            <p>Cùng nâng cao ý thức và kỹ năng tham gia giao thông.</p>
+        </div>
+
+        <div class="video-box reveal">
+            <iframe
+                src="https://www.youtube-nocookie.com/embed/xGZJmbhelo0"
+                title="Video giáo dục an toàn giao thông"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <p class="video-note">
+            Nếu video không phát được, hãy mở YouTube và tìm
+            video giáo dục về an toàn giao thông.
+        </p>
+    </div>
+</section>
+
+<!-- ==================================================
+     PHẦN 23: THÔNG ĐIỆP
+================================================== -->
+<section class="quote" id="message">
+    <div class="container reveal">
+        <div class="quote-symbol">💙🚦</div>
+        <h2>“Nhanh một phút,<br>chậm cả đời.”</h2>
+        <p>
+            Hãy tham gia giao thông bằng sự tỉnh táo,
+            trách nhiệm và lòng tôn trọng.
+            An toàn của bạn cũng là hạnh phúc của mọi người.
+        </p>
+        <a class="btn" href="#home">⌂ Quay lại trang chủ</a>
+    </div>
+</section>
+
+</main>
+
+<!-- ==================================================
+     PHẦN 24: CHÂN TRANG
+================================================== -->
+<footer>
+    <div class="container">
+        <h3>🚦 AN TOÀN GIAO THÔNG</h3>
+        <p>An toàn là hạnh phúc của mọi nhà.</p>
+
+        <div class="footer-links">
+            <a href="#knowledge">Kiến thức</a>
+            <a href="#solutions">Biện pháp</a>
+            <a href="#law">Tra cứu pháp luật</a>
+            <a href="https://thuvienphapluat.vn/"
+               target="_blank"
+               rel="noopener noreferrer">
+                Thư Viện Pháp Luật ↗
+            </a>
+        </div>
+
+        <p>© 2026 | Website tuyên truyền giáo dục an toàn giao thông.</p>
+        <p>Được xây dựng bằng HTML, CSS và JavaScript.</p>
+    </div>
+</footer>
+
+<button class="back-top" id="backTop"
+        aria-label="Quay lên đầu trang"
+        title="Quay lên đầu trang">↑</button>
+
+<!-- ==================================================
+     PHẦN 25: JAVASCRIPT - MENU, HIỆU ỨNG, TÌM KIẾM
+================================================== -->
+<script>
+/* 1. Menu điện thoại */
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Đóng menu" : "Mở menu"
+    );
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+/* Đóng menu sau khi chọn một mục */
+document.querySelectorAll("#navLinks a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Mở menu");
+        menuToggle.textContent = "☰";
+    });
+});
+
+/* 2. Hiệu ứng xuất hiện khi cuộn trang */
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach(element => observer.observe(element));
+} else {
+    revealElements.forEach(element => element.classList.add("visible"));
+}
+
+/* 3. Thanh tiến độ cuộn và nút quay lên đầu trang */
+const progressBar = document.getElementById("progressBar");
+const backTop = document.getElementById("backTop");
+
+function updateScrollUI() {
+    const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = scrollable > 0
+        ? (window.scrollY / scrollable) * 100
+        : 0;
+
+    progressBar.style.width = progress + "%";
+    backTop.classList.toggle("show", window.scrollY > 400);
+}
+
+window.addEventListener("scroll", updateScrollUI, { passive: true });
+window.addEventListener("resize", updateScrollUI);
+updateScrollUI();
+
+backTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+/* 4. Tìm kiếm văn bản pháp luật */
+document.getElementById("lawSearch").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const keyword = document.getElementById("lawKeyword").value.trim();
+
+    if (!keyword) {
+        document.getElementById("lawKeyword").focus();
+        return;
+    }
+
+    /*
+      Tìm kiếm qua Google giới hạn trong website Thư Viện Pháp Luật.
+      Cách này không phụ thuộc vào cấu trúc URL tìm kiếm nội bộ
+      có thể thay đổi của website đó.
+    */
+    const searchUrl =
+        "https://www.google.com/search?q=" +
+        encodeURIComponent("site:thuvienphapluat.vn " + keyword);
+
+    window.open(searchUrl, "_blank", "noopener,noreferrer");
+});
+
+/* 5. Đánh dấu mục menu tương ứng với khu vực đang xem */
+const sections = document.querySelectorAll("main section[id]");
+const menuItems = document.querySelectorAll("#navLinks a");
+
+if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                menuItems.forEach(link => {
+                    const isCurrent =
+                        link.getAttribute("href") === "#" + entry.target.id;
+
+                    if (isCurrent) {
+                        link.classList.add("active");
+                    } else {
+                        link.classList.remove("active");
+                    }
+                });
+            }
+        });
+    }, {
+        rootMargin: "-25% 0px -60% 0px"
+    });
+
+    sections.forEach(section => sectionObserver.observe(section));
+}
+</script>
+
+</body>
+</html>
